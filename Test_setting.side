@@ -1,0 +1,26 @@
+{
+  "id": "07ba1970-9893-439f-98f4-f6eb39e90a68",
+  "name": "Untitled Project",
+  "url": "http://localhost:4000/",
+  "tests": [{
+    "id": "a4371b02-d1c3-46ac-86de-e8fda76295c8",
+    "name": "Phoenix setting",
+    "commands": [{
+      "id": "26cb826b-38a8-4b97-9011-e13acd41864b",
+      "comment": "",
+      "command": "open",
+      "target": "",
+      "value": "/"
+    }]
+  }],
+  "suites": [{
+    "id": "6dcb654a-f1e2-4632-918f-3ec273759c12",
+    "name": "Default Suite",
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["a4371b02-d1c3-46ac-86de-e8fda76295c8"]
+  }],
+  "urls": [],
+  "plugins": [],
+  "version": "1.0"
+}

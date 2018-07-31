@@ -1,4 +1,4 @@
-/* This file is for your main application css. *//* Includes Bootstrap as well as some default style for the starter
+/* Includes Bootstrap as well as some default style for the starter
  * application. This can be safely deleted to start fresh.
  */
 
@@ -14,8 +14,31 @@ body, form, ul, table {
   margin-bottom: 20px;
 }
 
+#wrap {
+  display: flex;
+}
+#left {
+  width: 49%;
+}
+#right {
+  width: 49%;
+}
+#main {
+  width: 80%;
+}
+
+#complementary {
+  width: 20%;
+  min-width: 220px;
+}
+
 /* Phoenix flash messages */
 .alert:empty { display: none; }
+
+/* Phoenix inline forms in links and buttons */
+form.link, form.button {
+  display: inline;
+}
 
 /* Custom page header */
 .header {
@@ -75,3 +98,6 @@ body, form, ul, table {
     border-bottom: 0;
   }
 }
+/* This file is for your main application css. */
+
+/*# sourceMappingURL=app.css.map*/

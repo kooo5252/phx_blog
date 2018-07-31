@@ -1,0 +1,20 @@
+<h2>Listing post</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Username</th>
+      <th>Title</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for posts <- @post do %>
+    <tr>
+      <td><%= link posts.username , to: user_path(@conn, :show,  posts.username) %></td>
+      <td><%= link posts.title, to: posts_path(@conn, :show, posts) %></td>
+    </tr>
+<% end %>
+  </tbody>
+</table>

@@ -1,0 +1,6 @@
+<h2>New posts</h2>
+
+<%= render "form.html", changeset: @changeset, conn: @conn,
+                        action: posts_path(@conn, :create) %>
+
+<%= link "Back", to: user_path(@conn, :edit) %>

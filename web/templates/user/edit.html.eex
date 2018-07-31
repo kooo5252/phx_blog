@@ -1,0 +1,50 @@
+<h2>Myprofile</h2>
+
+
+  <div class =" card m-3">
+    <img src=
+      <%= if @user.userimageurl do %>
+        <%= @user.userimageurl %>          
+      <% else %>
+        "http://via.placeholder.com/320x320"
+      <% end %>
+     width = "320" height = "320" alt = "profile" class = "card-image-top mx-auto" >
+  </div>
+  <%= form_for @conn, user_path(@conn, :upload_photo), [as: "upload", multipart: :true], fn f -> %>  
+    <%= file_input f, :file, accept: "image/*" %>
+    <button class="btn btn-primary" type="submit">Upload</button>
+  <% end %>
+
+
+  <%= render "edit_form.html", changeset: @changeset, user: @user,
+                        action: user_path(@conn, :update) %>
+  <%= link "New posts", to: posts_path(@conn, :new), class: "btn btn-default btn-xs" %>
+<div id="wrap">
+  <div id="left">
+    <h3>Follow</h3>
+    <ul>
+      <%= for follows <- follow(@conn) do %>
+        <li>
+          <%= link follows.followed, to: user_path(@conn, :show, follows.followed) %>
+          <%= link "Unfollow", to: social_path(@conn, :delete, follows.followed), method: :delete, class: "btn btn-danger btn-xs" %>
+          </li>
+      <% end %>
+    </ul>
+  </div>
+  <div id="right">
+    <h3>Follower</h3>
+    <ul>
+      <%= for followers <- follower(@conn) do %>
+        <li>
+          <%= link followers.follow, to: user_path(@conn, :show, followers.follow) %>
+          <%= if follow?(@conn, @user.username) do %>
+            <%= link "Unfollow", to: social_path(@conn, :delete, @user.username), method: :delete, class: "btn btn-danger btn-xs" %>
+          <% else %>
+            <%= render PhxBlog.SocialView, "form.html", conn: @conn, username: @user.username, action: social_path(@conn, :create) %>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
+<%= link "Delete", to: user_path(@conn, :delete), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>

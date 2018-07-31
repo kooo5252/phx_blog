@@ -1,0 +1,27 @@
+<%= form_for @changeset, @action, fn f -> %>
+ <%= hidden_input f, :username, value: @user.username, class: "form-control" %>
+  <%= hidden_input f, :password, value: @user.crypted_password, class: "form-control" %>
+
+<ul>
+
+ <li>
+    <strong>Username:</strong>
+    <%= @user.username %>
+  </li>
+
+  <li>
+    <strong>Password:</strong>
+    <%= @user.crypted_password %>
+  </li>
+
+  <li>
+    <strong>Nickname:</strong>
+      <%= text_input f, :nickname, value: @user.nickname, class: "form-control" %>
+      <%= error_tag f, :nickname %>
+  </li>
+
+</ul>
+  <div class="form-group">
+    <%= submit "Submit", class: "btn btn-primary" %>
+  </div>
+<% end %>

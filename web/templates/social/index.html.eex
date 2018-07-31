@@ -1,0 +1,26 @@
+<h2>Listing social</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Follow</th>
+      <th>Followed</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for social <- @social do %>
+    <tr>
+      <td><%= social.follow %></td>
+      <td><%= social.followed %></td>
+
+      <td class="text-right">
+        <%= link "Show", to: social_path(@conn, :show, social), class: "btn btn-default btn-xs" %>
+        <%= link "Edit", to: social_path(@conn, :edit, social), class: "btn btn-default btn-xs" %>
+        <%= link "Delete", to: social_path(@conn, :delete, social), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>

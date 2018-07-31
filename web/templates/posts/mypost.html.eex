@@ -1,0 +1,25 @@
+<h2>Listing post</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Body</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for posts <- @post do %>
+    <tr>
+      <td><%= link posts.title, to: posts_path(@conn, :show, posts) %></td>
+      <td><%= posts.body %></td>
+
+      <td class="text-right">
+        <%= link "Edit", to: posts_path(@conn, :edit, posts), class: "btn btn-default btn-xs" %>
+        <%= link "Delete", to: posts_path(@conn, :delete, posts), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>

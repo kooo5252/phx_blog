@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Hello PhxBlog!</title>
+    <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
+  </head>
+
+  <body>
+    <div class="container">
+      <header class="header">
+        <ul class="nav nav-pills pull-right">
+          <%= if logged_in?(@conn) do %>
+            <li><%= current_user(@conn).username %></li>
+            <li><%= link "ログアウト", to: session_path(@conn, :delete), method: :delete %></li>
+          <% else %>
+            <li><%= link "ユーザ登録", to: user_path(@conn, :new) %></li>
+            <li><%= link "ログイン", to: session_path(@conn, :new) %></li>
+          <% end %>
+        </ul>
+        <nav role="navigation">
+          <ul class="nav nav-pills pull-right">
+            <li><input type="text" id="searchbox" value="">
+                <input type="button" value="Search!" onclick="location.href = '/post/search/' + document.getElementById('searchbox').value";></li>
+            <li><a href="http://www.phoenixframework.org/docs">Get Started</a></li>
+          </ul>
+        </nav>
+        <span class="logo"></span>
+      </header>
+
+      <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
+      <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
+
+      <div id="wrap">
+        <main id="main" role="main">
+          <%= render @view_module, @view_template, assigns %>
+        </main>
+        <aside id="complementary" role="complementary">
+          <div>
+            <h2>Links</h2>
+            <ul>
+              <li><%= link "Top page", to: posts_path(@conn, :index) %></li>
+              <li><%= link "User list", to: user_path(@conn, :index) %></li>
+              <%= if logged_in?(@conn) do %>
+                <li><%= link "My profile", to: user_path(@conn, :edit) %></li>
+                <li><%= link "New post", to: posts_path(@conn, :new) %></li>
+                <li><%= link "My posts", to: posts_path(@conn, :mypost) %></li>
+              <% end %>
+            </ul>
+          </div>
+          <%= render PhxBlog.SidebarView, "ranking.html", conn: @conn %>
+        </aside>
+      </div>
+<br/><br/><br/>
+
+    </div> <!-- /container -->
+    <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
+  </body>
+</html>

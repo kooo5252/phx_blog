@@ -1,0 +1,52 @@
+<h2>Show posts</h2>
+
+<ul>
+
+  <li>
+    <strong>Title:</strong>
+    <%= @posts.title %>
+  </li>
+  <li>
+    <strong>Body:</strong>
+    <%= @posts.body %>
+  </li>
+  <li>
+    <strong>Access_count:</strong>
+    <%= @posts.access_count %>
+  </li>
+  <li>
+    <strong>Inserted:</strong>
+    <%= @posts.inserted_at %>
+  </li>
+  <li>
+    <strong>Updated:</strong>
+    <%= @posts.updated_at %>
+  </li>
+  <li>
+    <strong>name:</strong>
+      <%= if @user.nickname do %>
+        <%= @user.nickname %>
+      <% else %>
+        <%= @user.username %>
+      <% end %>
+  </li>
+  <li>
+      <%= link "Profile", to: user_path(@conn, :show, @user), class: "btn btn-default btn-xs" %>
+  </li>
+
+</ul>
+    <div class =" card m-3">
+      <img src=
+        <%= if @user.userimageurl do %>
+          <%= @user.userimageurl %>          
+        <% else %>
+          "http://via.placeholder.com/320x320"
+        <% end %>
+       width = "320" height = "320" alt = "profile" class = "card-image-top mx-auto" >
+    </div>
+
+<%= render PhxBlog.CommentView, "index.html", conn: @conn, id: @posts.id %>
+<%= render PhxBlog.CommentView, "new.html", conn: @conn %>
+
+<%= link "Edit", to: posts_path(@conn, :edit, @posts) %>
+<%= link "Back", to: posts_path(@conn, :index) %>

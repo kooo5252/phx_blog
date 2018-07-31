@@ -1,0 +1,33 @@
+<h2>Show session</h2>
+
+<ul>
+
+  <li>
+    <strong>Username:</strong>
+    <%= @session.username %>
+  </li>
+
+  <li>
+    <strong>Password:</strong>
+    <%= @session.password %>
+  </li>
+
+  <li>
+    <strong>Nickname:</strong>
+    <%= @session.nickname %>
+  </li>
+
+  <li>
+    <strong>Userimageurl:</strong>
+    <%= @session.userimageurl %>
+  </li>
+
+  <li>
+    <strong>Follow:</strong>
+    <%= @session.follow %>
+  </li>
+
+</ul>
+
+<%= link "Edit", to: session_path(@conn, :edit, @session) %>
+<%= link "Back", to: session_path(@conn, :index) %>

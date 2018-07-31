@@ -1,0 +1,25 @@
+<h2>Comments</h2>
+<table class="table">
+  <thead>
+  </thead>
+  <tbody>
+    <ol>
+<%= for comment <- comment_index(@conn, @id) do %>
+      <li>
+        <tr>
+          <td>Title</td>
+          <td><%= comment.title %></td>
+        </tr>
+        <tr>
+          <td>Body</td>
+          <td><%= comment.body %></td>
+        </tr>
+        <tr>
+          <td>Name</td>
+          <td><%= link comment.name, to: comment.mail %></td>
+        </tr>
+      </li>
+<% end %>
+    </ol>
+  </tbody>
+</table>

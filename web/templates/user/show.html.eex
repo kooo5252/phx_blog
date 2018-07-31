@@ -1,0 +1,42 @@
+<h2>Show user</h2>
+
+<ul>
+
+  <li>
+    <div class =" card m-3">
+      <img src=
+        <%= if @user.userimageurl do %>
+          <%= @user.userimageurl %>          
+        <% else %>
+          "http://via.placeholder.com/320x320"
+        <% end %>
+       width = "320" height = "320" alt = "profile" class = "card-image-top mx-auto" >
+    </div>
+  </li>
+  <li>
+    <strong>Username:</strong>
+    <%= @user.username %>
+  </li>
+
+  <li>
+    <strong>Password:</strong>
+    <%= @user.crypted_password %>
+  </li>
+
+  <li>
+    <strong>Nickname:</strong>
+    <%= @user.nickname %>
+  </li>
+  <%= if logged_in?(@conn) do %>
+    <li>
+      <%= if follow?(@conn, @user.username) do %>
+        <%= link "Unfollow", to: social_path(@conn, :delete, @user.username), method: :delete, class: "btn btn-danger btn-xs" %>
+      <% else %>
+        <%= render PhxBlog.SocialView, "form.html", conn: @conn, username: @user.username, action: social_path(@conn, :create) %>
+      <% end %>
+    </li>
+  <% end %>
+
+</ul>
+
+<%= link "Back", to: user_path(@conn, :index) %>

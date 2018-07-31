@@ -1,0 +1,33 @@
+<h2>Listing users</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Username</th>
+      <th>Nickname</th>
+      <th>Userimageurl</th>
+      <%= if logged_in?(@conn) do %>
+        <th>Follow</th>
+      <% end %>
+    </tr>
+  </thead>
+  <tbody>
+<%= for user <- @users do %>
+    <tr>
+      <td><%= link user.username , to: user_path(@conn, :show, user.username) %></td>
+      <td><%= user.nickname %></td>
+      <td><%= user.userimageurl %></td>
+      <%= if logged_in?(@conn) do %>
+        <td>
+          <%= if follow?(@conn, user.username) do %>
+            <%= link "Unfollow", to: social_path(@conn, :delete, user.username), method: :delete, class: "btn btn-danger btn-xs" %>
+          <% else %>
+            <%= render PhxBlog.SocialView, "form.html", conn: @conn, username: user.username, action: social_path(@conn, :create) %>
+          <% end %>
+
+            </td>
+      <% end %>
+    </tr>
+<% end %>
+  </tbody>
+</table>

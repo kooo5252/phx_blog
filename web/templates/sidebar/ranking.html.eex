@@ -1,0 +1,16 @@
+<h2>Popular</h2>
+
+<table class="table">
+  <thead>
+  </thead>
+  <tbody>
+    <hr>
+<%= for posts <- ranking() do %>
+    <tr>
+      <td><%= link posts.title, to: posts_path(@conn, :show, posts) %></td>
+      <td><%= posts.access_count %> "access"</td>
+    </tr>
+    <hr>
+<% end %>
+  </tbody>
+</table>
